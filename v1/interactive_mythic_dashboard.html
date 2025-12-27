@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Foster ARC RPG: Interactive Mythic Dashboard</title>
+<style>
+body { margin:0; font-family:'Segoe UI',sans-serif; background:#0b0c10; color:#c5c6c7; overflow-x:hidden; }
+header { background: linear-gradient(90deg,#1f2833,#0b0c10); padding:1rem; position:sticky; top:0; z-index:1000; border-bottom:2px solid #45a29e; }
+header h1 { margin:0; font-size:1.8rem; color:#66fcf1; }
+nav { margin-top:0.5rem; }
+nav a { color:#c5c6c7; margin-right:1rem; text-decoration:none; font-size:0.9rem; }
+nav a:hover { color:#66fcf1; }
+
+main { padding:1rem; max-width:1400px; margin:auto; }
+section { margin-bottom:2rem; background:#1f2833; padding:1rem; border-radius:12px; box-shadow:0 0 10px rgba(0,0,0,0.5); }
+section h2 { cursor:pointer; margin:0; color:#45a29e; }
+.content { display:none; margin-top:0.5rem; }
+section.active .content { display:block; }
+section h2::after { content: ' ▼'; font-size:0.8rem; color:#c5c6c7; }
+section.active h2::after { content:' ▲'; }
+
+#hud { position:fixed; bottom:1rem; right:1rem; background:rgba(11,12,16,0.9); color:#66fcf1; padding:1rem; border-radius:12px; width:260px; font-size:0.85rem; }
+
+#constellation { width:220px; height:220px; display:block; margin:auto; background:#0b0c10; border-radius:12px; }
+
+table { width:100%; border-collapse:collapse; }
+th,td { padding:0.5rem; border:1px solid #45a29e; text-align:left; }
+th { background:#0b0c10; color:#66fcf1; }
+
+.skill-tree { display:flex; flex-wrap:wrap; gap:1rem; }
+.skill { background:#0b0c10; border:1px solid #45a29e; padding:0.5rem; border-radius:8px; width:150px; text-align:center; cursor:pointer; transition:0.2s; }
+.skill:hover { border-color:#66fcf1; transform:scale(1.05); }
+.skill.unlocked { background:#1f2833; border-color:#66fcf1; }
+.skill.locked { opacity:0.4; cursor:default; }
+
+#splash { position:fixed; top:0; left:0; width:100%; height:100%; background:#0b0c10; display:flex; align-items:center; justify-content:center; z-index:2000; flex-direction:column; color:#66fcf1; font-size:1.5rem; }
+#splash.hidden { display:none; }
+
+button { background:#45a29e; border:none; padding:0.5rem 1rem; color:#0b0c10; border-radius:6px; cursor:pointer; margin-top:0.5rem; }
+button:hover { background:#66fcf1; color:#0b0c10; }
+
+@media print { body{background:white;color:black;} section{border:none;box-shadow:none;} #hud,#splash{display:none;} nav{display:none;} }
+</style>
+</head>
+<body>
+
+<div id="splash">
+  <div>Initializing Mythic ARC RPG...</div>
+  <div style="font-size:1rem; margin-top:1rem;">🌌 Loading Systems, Lore & Interactive Mechanics...</div>
+</div>
+
+<header>
+  <h1>Foster ARC RPG: Interactive Mythic Dashboard</h1>
+  <nav>
+    <a href="#character">Character</a>
+    <a href="#skills">Skills</a>
+    <a href="#skilltree">Skill Tree</a>
+    <a href="#quests">Quests</a>
+    <a href="#inventory">Inventory</a>
+    <a href="#reputation">Reputation</a>
+    <a href="#progression">Progression</a>
+  </nav>
+</header>
+
+<main>
+
+<section id="character">
+<h2>Character Profile</h2>
+<div class="content">
+<p><strong>Name:</strong> Foster</p>
+<p><strong>Class Path:</strong> ARC-Smith (Systems + Lore Forger)</p>
+<p><strong>Origin:</strong> Newfoundland → Current Biome: Fort McMurray, Alberta</p>
+<p><strong>Specializations:</strong> PC Surgeon, Tank Whisperer, Data Architect, Crisis Prevention</p>
+<p><strong>Core Traits:</strong> Virtue, Systems Thinking, Regeneration, Truth, Feedback Loops</p>
+<p><strong>Signature Perks:</strong> Takes hits intentionally, Converts ideas into modular frameworks, Builds offline-reliable systems, Thinks in cascades</p>
+<p><strong>Narrative Tagline:</strong> "Frost smiles back at those who stand after the wave breaks."</p>
+</div>
+</section>
+
+<section id="skills">
+<h2>Skills & Abilities</h2>
+<div class="content">
+<ul>
+<li><strong>Technical Mastery:</strong> PC repair, software architecture, data systems, offline-first design</li>
+<li><strong>Operational Prowess:</strong> Heavy equipment handling, crisis response, ecological repair strategies</li>
+<li><strong>Strategic Insight:</strong> Decentralized networks, policy oversight, gamified behavioral change</li>
+<li><strong>Personal Resilience:</strong> Sobriety quests, physical endurance, ethical decision-making</li>
+<li><strong>Mythic Impact:</strong> Cascading systems affecting community, environmental, and global restoration</li>
+</ul>
+</div>
+</section>
+
+<section id="skilltree">
+<h2>Skill Tree</h2>
+<div class="content skill-tree">
+<div class="skill unlocked" data-xp="0" title="PC repair mastery and hardware optimization">PC Artisan</div>
+<div class="skill unlocked" data-xp="2000" title="Heavy equipment operation, tank handling">Tank Whisperer</div>
+<div class="skill unlocked" data-xp="4000" title="Crisis management & early-warning systems">Crisis Strategist</div>
+<div class="skill locked" data-xp="6000" title="Autonomous environmental repair networks">Eco Architect</div>
+<div class="skill locked" data-xp="8000" title="Decentralized energy and climate nodes">Node Weaver</div>
+<div class="skill locked" data-xp="10000" title="Gamified behavior and virtue tracking">Lightforge Adept</div>
+<div class="skill unlocked" data-xp="12000" title="Influence and systemic impact scaling">Reputation Builder</div>
+<div class="skill locked" data-xp="15000" title="Sponsorship & amplification multipliers">Patron Aligned</div>
+</div>
+</section>
+
+<section id="quests">
+<h2>Quest Journal</h2>
+<div class="content">
+<h4>Completed Quests:</h4>
+<ul id="completedQuests">
+<li>Rebuilt 100+ PCs with 98% success rate</li>
+<li>Operated and repositioned 400BBL tanks</li>
+<li>Seeded Sentinel ARC & LightforgeHUD concepts</li>
+<li>Designed corruption-exposure oversight framework</li>
+<li>Initiated local biospheric repair for trees and pollinators</li>
+<li>Explored sponsorship impact for high-output stewardship</li>
+</ul>
+<h4>Active Challenges:</h4>
+<ul id="activeQuests">
+<li data-xp="1000">Vice Sunset: gradual cannabis reduction <button onclick="completeQuest(this)">Complete +1k XP</button></li>
+<li data-xp="1200">Policy triggers for heat, air quality, mental resilience <button onclick="completeQuest(this)">Complete +1.2k XP</button></li>
+<li data-xp="1500">Engineering decentralized energy & climate nodes <button onclick="completeQuest(this)">Complete +1.5k XP</button></li>
+<li data-xp="800">Maintaining zero-harm across all systems <button onclick="completeQuest(this)">Complete +0.8k XP</button></li>
+</ul>
+</div>
+</section>
+
+<section id="inventory">
+<h2>Inventory & Assets</h2>
+<div class="content">
+<table>
+<thead><tr><th>Item</th><th>Description</th><th>Effect / Use</th><th>Rarity</th></tr></thead>
+<tbody>
+<tr><td>PC Repair Toolkit</td><td>High-end modular repair kit</td><td>Boosts technical restoration efficiency</td><td>Epic</td></tr>
+<tr><td>Tank Stabilization Harness</td><td>Heavy-duty safety equipment</td><td>Enables safe repositioning & handling of tanks</td><td>Rare</td></tr>
+<tr><td>Seed Node Kits</td><td>Autonomous environmental repair modules</td><td>Boosts global ecological restoration multiplier</td><td>Legendary</td></tr>
+<tr><td>LightforgeHUD</td><td>Gamified sobriety & life optimization interface</td><td>Tracks virtue/vices & personal progression</td><td>Epic</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<section id="reputation">
+<h2>Reputation & Echoes</h2>
+<div class="content">
+<ul>
+<li><strong>Community Influence:</strong> Local & global initiatives, mentorship, ecosystem impact</li>
+<li><strong>Environmental Impact:</strong> Seeded regeneration, biospheric repair, pollinator network restoration</li>
+<li><strong>Systemic Influence:</strong> Oversight frameworks, decentralized nodes, policy triggers</li>
+<li><strong>Multiplier Potential:</strong> Sponsorship aligned scaling and legacy effects</li>
+</ul>
+</div>
+</section>
+
+<section id="progression">
+<h2>Progression & Metrics</h2>
+<div class="content">
+<p><strong>Level:</strong> <span id="level">7</span>/10</p>
+<p><strong>Experience:</strong> <span id="xp">125000</span> pts</p>
+<p><strong>Virtue / Vice Balance:</strong> <span id="virtue">82%</span> / <span id="vice">18%</span></p>
+<p><strong>Humanity Multiplier:</strong> <span id="humanity">?</span> (sponsor-aligned)</p>
+<p><strong>Reputation / Echoes:</strong> Tracks influence across community, ecological, and systemic domains</p>
+<canvas id="constellation"></canvas>
+</div>
+</section>
+
+</main>
+
+<div id="hud">
+<strong>HUD:</strong><br>
+Level: <span id="hudLevel">7</span><br>
+XP: <span id="hudXP">125000</span> pts<br>
+Virtue: <span id="hudVirtue">82%</span><br>
+Vice: <span id="hudVice">18%</span><br>
+Humanity Multiplier: <span id="hudHumanity">?</span><br>
+<small style="display:block; margin-top:0.5rem;">✨ Constellation shows systemic connections & influence</small>
+</div>
+
+<script>
+// Splash
+window.addEventListener('load', ()=>{ setTimeout(()=>{ document.getElementById('splash').classList.add('hidden'); },2000); });
+
+// Collapsible
+document.querySelectorAll('section h2').forEach(h=>{
+  h.addEventListener('click',()=>{ h.parentElement.classList.toggle('active'); });
+});
+
+// Constellation
+const canvas = document.getElementById('constellation');
+const ctx = canvas.getContext('2d');
+const width = canvas.width, height = canvas.height;
+const nodes = Array.from({length:20},()=>({x:Math.random()*width,y:Math.random()*height,vx:(Math.random()-0.5)/2,vy:(Math.random()-0.5)/2}));
+function draw(){
+  ctx.fillStyle='#0b0c10';
+  ctx.fillRect(0,0,width,height);
+  ctx.strokeStyle='#66fcf1';
+  nodes.forEach(n=>{ nodes.forEach(m=>{
+    const dx=m.x-n.x, dy=m.y-n.y, dist=Math.sqrt(dx*dx+dy*dy);
+    if(dist<60){ ctx.beginPath(); ctx.moveTo(n.x,n.y); ctx.lineTo(m.x,m.y); ctx.stroke(); }
+  })});
+  ctx.fillStyle='#66fcf1';
+  nodes.forEach(n=>{
+    ctx.beginPath(); ctx.arc(n.x,n.y,3,0,Math.PI*2); ctx.fill();
+    n.x+=n.vx; n.y+=n.vy;
+    if(n.x<0||n.x>width)n.vx*=-1;
+    if(n.y<0||n.y>height)n.vy*=-1;
+  });
+  requestAnimationFrame(draw);
+}
+draw();
+
+// RPG Mechanics
+let xp = 125000;
+let level = 7;
+
+function completeQuest(btn){
+  const li = btn.parentElement;
+  const gained = parseInt(li.getAttribute('data-xp')) || 0;
+  xp += gained;
+  level = Math.floor(xp/20000)+1;
+  li.remove();
+  document.getElementById('xp').textContent = xp;
+  document.getElementById('level').textContent = level;
+  document.getElementById('hudXP').textContent = xp;
+  document.getElementById('hudLevel').textContent = level;
+  unlockSkills();
+}
+
+function unlockSkills(){
+  document.querySelectorAll('.skill').forEach(s=>{
+    const needed = parseInt(s.getAttribute('data-xp')) || 0;
+    if(xp>=needed && s.classList.contains('locked')){
+      s.classList.remove('locked');
+      s.classList.add('unlocked');
+      s.style.borderColor='#66fcf1';
+    }
+  });
+}
+unlockSkills();
+</script>
+
+<footer style="text-align:center; padding:1rem; font-size:0.75rem; color:#45a29e;">
+Zero-Harm & Anti-Inversion Design | Fully Offline Capable | User Data Local Only
+</footer>
+
+<!--
+Zero-Harm and Anti-Inversion note:
+All analytics and storage are client-side only. No secrets, tokens, or PII are exposed. All systems are designed for transparency, safety, and regenerative impact.
+-->
+</body>
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Foster ARC RPG</title>
+<style>
+  /* Global Styles */
+  body { margin:0; font-family: 'Segoe UI', sans-serif; background: #0b0c10; color: #c5c6c7; overflow-x:hidden; }
+  header { background: linear-gradient(90deg,#1f2833,#0b0c10); padding:1rem; position:sticky; top:0; z-index:1000; border-bottom: 2px solid #45a29e; }
+  header h1 { margin:0; font-size:1.8rem; color:#66fcf1; }
+  nav { margin-top:0.5rem; }
+  nav a { color:#c5c6c7; margin-right:1rem; text-decoration:none; font-size:0.9rem; }
+  nav a:hover { color:#66fcf1; }
+
+  main { padding:1rem; max-width:1200px; margin:auto; }
+  section { margin-bottom:2rem; background:#1f2833; padding:1rem; border-radius:12px; box-shadow:0 0 10px rgba(0,0,0,0.5); }
+  section h2 { cursor:pointer; margin:0; color:#45a29e; }
+  .content { display:none; margin-top:0.5rem; }
+  .active .content { display:block; }
+
+  /* HUD Styles */
+  #hud { position:fixed; bottom:1rem; right:1rem; background:rgba(11,12,16,0.9); color:#66fcf1; padding:1rem; border-radius:12px; width:220px; font-size:0.85rem; }
+  #constellation { width:200px; height:200px; display:block; margin:auto; }
+
+  /* Inventory Table */
+  table { width:100%; border-collapse:collapse; }
+  th,td { padding:0.5rem; border:1px solid #45a29e; text-align:left; }
+  th { background:#0b0c10; color:#66fcf1; }
+
+  /* Collapsible indicator */
+  section h2::after { content: ' ▼'; font-size:0.8rem; color:#c5c6c7; }
+  section.active h2::after { content:' ▲'; }
+
+  /* Splash screen */
+  #splash { position:fixed; top:0; left:0; width:100%; height:100%; background:#0b0c10; display:flex; align-items:center; justify-content:center; z-index:2000; flex-direction:column; color:#66fcf1; font-size:1.5rem; }
+  #splash.hidden { display:none; }
+
+  /* Print style */
+  @media print { body { background:white; color:black; } section { border:none; box-shadow:none; } #hud, #splash { display:none; } nav { display:none; } }
+</style>
+</head>
+<body>
+
+<div id="splash">
+  <div>Initializing Mythic ARC RPG...</div>
+  <div style="font-size:1rem; margin-top:1rem;">🌌 Loading Systems & Lore...</div>
+</div>
+
+<header>
+  <h1>Foster ARC RPG</h1>
+  <nav>
+    <a href="#character">Character</a>
+    <a href="#skills">Skills</a>
+    <a href="#quests">Quests</a>
+    <a href="#inventory">Inventory</a>
+    <a href="#progression">Progression</a>
+  </nav>
+</header>
+
+<main>
+  <!-- Character Section -->
+  <section id="character">
+    <h2>Character Profile</h2>
+    <div class="content">
+      <p><strong>Name:</strong> Foster</p>
+      <p><strong>Class Path:</strong> ARC-Smith (Systems + Lore Forger)</p>
+      <p><strong>Origin:</strong> Newfoundland → Current Biome: Fort McMurray, Alberta</p>
+      <p><strong>Specializations:</strong> PC Surgeon, Tank Whisperer, Data Architect, Crisis Prevention</p>
+      <p><strong>Core Traits:</strong> Virtue, Systems Thinking, Regeneration, Truth, Feedback Loops</p>
+      <p><strong>Signature Perks:</strong> Takes hits intentionally, Converts ideas into modular frameworks, Builds offline-reliable systems, Thinks in cascades</p>
+      <p><strong>Narrative Tagline:</strong> "Frost smiles back at those who stand after the wave breaks."</p>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills">
+    <h2>Skills & Abilities</h2>
+    <div class="content">
+      <ul>
+        <li><strong>Technical Mastery:</strong> PC repair, software architecture, data systems, offline-first design</li>
+        <li><strong>Operational Prowess:</strong> Heavy equipment handling, crisis response, ecological repair strategies</li>
+        <li><strong>Strategic Insight:</strong> Decentralized networks, policy oversight, gamified behavioral change</li>
+        <li><strong>Personal Resilience:</strong> Sobriety quests, physical endurance, ethical decision-making</li>
+        <li><strong>Mythic Impact:</strong> Cascading systems effecting community, environmental, and global restoration</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Quests Section -->
+  <section id="quests">
+    <h2>Completed & Active Quests</h2>
+    <div class="content">
+      <h4>Completed Quests:</h4>
+      <ul>
+        <li>Rebuilt 100+ PCs with 98% success rate</li>
+        <li>Operated and repositioned 400BBL tanks</li>
+        <li>Seeded Sentinel ARC & LightforgeHUD concepts</li>
+        <li>Designed corruption-exposure oversight framework</li>
+        <li>Initiated local biospheric repair for trees and pollinators</li>
+        <li>Explored sponsorship impact for high-output stewardship</li>
+      </ul>
+      <h4>Active Challenges:</h4>
+      <ul>
+        <li>Vice Sunset: gradual cannabis reduction</li>
+        <li>Policy triggers for heat, air quality, mental resilience</li>
+        <li>Engineering decentralized energy & climate nodes</li>
+        <li>Maintaining zero-harm across all systems</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Inventory Section -->
+  <section id="inventory">
+    <h2>Inventory & Assets</h2>
+    <div class="content">
+      <table>
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Description</th>
+            <th>Effect / Use</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>PC Repair Toolkit</td>
+            <td>High-end modular repair kit</td>
+            <td>Boosts technical restoration efficiency</td>
+          </tr>
+          <tr>
+            <td>Tank Stabilization Harness</td>
+            <td>Heavy-duty safety equipment</td>
+            <td>Enables safe repositioning & handling of tanks</td>
+          </tr>
+          <tr>
+            <td>Seed Node Kits</td>
+            <td>Autonomous environmental repair modules</td>
+            <td>Boosts global ecological restoration multiplier</td>
+          </tr>
+          <tr>
+            <td>LightforgeHUD</td>
+            <td>Gamified sobriety & life optimization interface</td>
+            <td>Tracks virtue/vices & personal progression</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Progression Section -->
+  <section id="progression">
+    <h2>Progression & Metrics</h2>
+    <div class="content">
+      <p><strong>Level:</strong> Mythic ARC-Smith 7/10</p>
+      <p><strong>Humanity Multiplier:</strong> Speculative value increases with sponsorship alignment & ecological impact</p>
+      <p><strong>Experience:</strong> 125,000 pts – earned via real-world trials, system deployments, and regenerative actions</p>
+      <p><strong>Virtue / Vice Balance:</strong> Virtue 82%, Vice 18%</p>
+      <p><strong>Reputation / Echoes:</strong> Community, environmental, & systemic influence across multiple domains</p>
+      <canvas id="constellation"></canvas>
+    </div>
+  </section>
+</main>
+
+<div id="hud">
+  <strong>HUD:</strong><br>
+  Level: 7/10<br>
+  Virtue: 82%<br>
+  Vice: 18%<br>
+  Experience: 125,000 pts<br>
+  Humanity Multiplier: +? (sponsor-aligned)<br>
+  <small style="display:block; margin-top:0.5rem;">✨ Constellation shows systemic connections</small>
+</div>
+
+<script>
+  // Splash screen
+  window.addEventListener('load', ()=>{ setTimeout(()=>{ document.getElementById('splash').classList.add('hidden'); },1800); });
+
+  // Collapsible sections
+  document.querySelectorAll('section h2').forEach(h=>{
+    h.addEventListener('click',()=>{
+      h.parentElement.classList.toggle('active');
+    });
+  });
+
+  // Constellation-style state visualizer
+  const canvas = document.getElementById('constellation');
+  const ctx = canvas.getContext('2d');
+  const width = canvas.width, height = canvas.height;
+  const stars = Array.from({length:50},()=>({x:Math.random()*width, y:Math.random()*height, vx:(Math.random()-0.5)/2, vy:(Math.random()-0.5)/2}));
+
+  function draw() {
+    ctx.fillStyle = '#0b0c10';
+    ctx.fillRect(0,0,width,height);
+    ctx.fillStyle = '#66fcf1';
+    stars.forEach(s=>{
+      ctx.beginPath();
+      ctx.arc(s.x,s.y,2,0,Math.PI*2);
+      ctx.fill();
+      s.x+=s.vx; s.y+=s.vy;
+      if(s.x<0||s.x>width)s.vx*=-1;
+      if(s.y<0||s.y>height)s.vy*=-1;
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+</script>
+
+<footer style="text-align:center; padding:1rem; font-size:0.75rem; color:#45a29e;">
+  Zero-Harm & Anti-Inversion Design | Fully Offline Capable | User Data Local Only
+</footer>
+
+<!--
+Zero-Harm and Anti-Inversion note:
+All analytics and storage are client-side only. No secrets, tokens, or PII are exposed. All systems are designed for transparency, safety, and regenerative impact.
+-->
+
+</body>
+</html>
